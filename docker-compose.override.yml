@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  jenkins:
+    environment:
+      DOCKER_HOST: "tcp://host.docker.internal:2375"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.localhost`)"
+      - "traefik.http.routers.jenkins.entryPoints=web"
+      - "traefik.http.services.jenkins.loadBalancer.server.port=8080"
