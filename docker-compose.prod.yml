@@ -7,10 +7,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.jenkins-redirect-web-secure.redirectscheme.scheme=https"
-      - "traefik.http.routers.jenkins.rule=Host(`jenkins.ops.katiecordescodes.com`)"
+      - "traefik.http.routers.jenkins.rule=Host(`${JENKINS_URL}`)"
       - "traefik.http.routers.jenkins.entryPoints=web"
       - "traefik.http.routers.jenkins.middlewares=jenkins-redirect-web-secure"
-      - "traefik.http.routers.jenkinssecure.rule=Host(`jenkins.ops.katiecordescodes.com`)"
+      - "traefik.http.routers.jenkinssecure.rule=Host(`${JENKINS_URL}`)"
       - "traefik.http.routers.jenkinssecure.entryPoints=websecure"
       - "traefik.http.routers.jenkinssecure.tls=true"
       - "traefik.http.routers.jenkinssecure.tls.certresolver=myresolver"
