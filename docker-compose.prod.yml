@@ -15,3 +15,10 @@ services:
       - "traefik.http.routers.jenkinssecure.tls=true"
       - "traefik.http.routers.jenkinssecure.tls.certresolver=myresolver"
       - "traefik.http.services.jenkinssecure.loadBalancer.server.port=8080"
+    networks:
+      - traefik
+      - jenkins-docker-proxy
+
+networks:
+  jenkins-docker-proxy:
+    external: true
