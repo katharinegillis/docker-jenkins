@@ -7,8 +7,6 @@ services:
       context: .
     container_name: jenkins
     restart: always
-    environment:
-      JAVA_ARGS: "-Xmx512m"
     volumes:
       - jenkins-data:/var/jenkins_home
     networks:
