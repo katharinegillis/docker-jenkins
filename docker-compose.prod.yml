@@ -2,8 +2,6 @@ version: "3.7"
 
 services:
   jenkins:
-    environment:
-      DOCKER_HOST: "tcp://jenkins-docker-proxy:2375"
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.jenkins-redirect-web-secure.redirectscheme.scheme=https"
@@ -15,12 +13,4 @@ services:
       - "traefik.http.routers.jenkinssecure.tls=true"
       - "traefik.http.routers.jenkinssecure.tls.certresolver=myresolver"
       - "traefik.http.services.jenkinssecure.loadBalancer.server.port=8080"
-    networks:
-      - traefik
-      - jenkins-docker-proxy
-
-networks:
-  traefik:
-    external: true
-  jenkins-docker-proxy:
-    external: true
+      - "traefik.docker.network=traefik"

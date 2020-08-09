@@ -9,12 +9,17 @@ services:
     restart: always
     volumes:
       - jenkins-data:/var/jenkins_home
+    environment:
+      DOCKER_HOST: "tcp://jenkins-docker-proxy:2375"
     networks:
       - traefik
-
-volumes:
-  jenkins-data:
+      - jenkins-docker-proxy
 
 networks:
   traefik:
     external: true
+  jenkins-docker-proxy:
+    external: true
+
+volumes:
+  jenkins-data:
